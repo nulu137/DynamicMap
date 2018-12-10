@@ -1,0 +1,39 @@
+/* ~~~~~~~~~~~~~GENERAL STYLES~~~~~~~~~~~~~ */
+html {
+	width: 100%;	
+	height: 100%;
+	margin: 0;
+}
+
+head {
+	
+	width: 100%;
+	height: 100%;
+
+}
+
+body {
+	
+	overflow:hidden;
+	width: 100%;
+	height: 100%;
+}
+
+p {
+	color: #004f3f;
+	font-size: 14px;
+	font-weight: bold;
+	margin-top: 10px;
+}
+
+label {
+	color: #004f3f;
+	font-size: 14px;
+	margin-top: 10px;
+}
+
+#map {
+	width: 70%;
+	height: 100%;
+
+}
