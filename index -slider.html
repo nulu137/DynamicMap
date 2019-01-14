@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	
+	<meta charset = "UTF-8" />
+	<meta name = "viewport" content ="width=device.width, initial-scale=1"/>
+	<title> Dynamic Map Germany </title>
+		
+		<!-- Stylesheet CSS -->
+		<link rel = "stylesheet" href = "./css/style.css" />
+	
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
+	   integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+	   crossorigin=""/>
+		
+	<!-- Make sure you put this AFTER Leaflet's CSS -->
+		<script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
+	   integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+	   crossorigin=""></script>
+	   
+	   <script src="./js/leaflet.ajax.min.js"></script>
+	   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		
+		<!-- JSON Source ADD-->
+		<script src = "./data/DEU_WGS84.geojson"></script>
+		
+		<!-- JS Functions ADD-->
+		<script src = "./js/choropleth.js"></script>
+		
+		<!-- Leaflet Timeslider added https://github.com/skeate/Leaflet.timeline
+		<script src="./js/Timeline.js"></script>
+		<script src="./js/TimelineSliderControl.js"></script> -->
+		<script src="./js/leaflet.timeline.js"></script>
+		
+		
+		
+		<!-- <script type="text/javascript" src="d3/d3.v3.js"></script> -->
+		
+
+	
+	</head>
+	
+	<body>
+	
+	<script type="text/javascript">
+	
+	
+	
+	</script>
+			
+	<div id="legend">
+	<h1>Dynamic Map Germany</h1>
+
+	</div>
+	
+	<div id = "map" > 
+	<button id= "toggle"> Toogle </button> 
+		
+		<script> 
+		<!-- 		var geojsonLayer = new L.GeoJSON.AJAX("D.json"); geojsonLayer.addTo(map); --> 
+		
+		var DEU_WGS84;
+		
+		var map = L.map('map').setView([51, 10], 6);
+		
+		console.log(DEU_WGS84);
+		//var Deutschland = new L.geoJson(DEU);
+		//Deutschland.addTo(map);
+		
+		function style(feature) {
+			return {
+				fillColor: getColor(feature.properties.unemp_rate),
+				weight: 2,
+				opacity: 1,
+				color: 'black',
+				fillOpacity: 1
+    };
+}
+
+
+		var interval = function(DEU_WGS84){
+		console.log(DEU_WGS84.properties.start);
+			return {
+				start: DEU_WGS84.properties.start,
+				end: DEU_WGS84.properties.end
+				
+			};
+			
+		}; 
+		
+
+//L.geoJson(DEU_WGS84, {style: style}).addTo(map);
+		
+
+		
+
+        var timelineControl = L.timelineSliderControl({
+			formatOutput: function(date) {
+            return new Date(date).toLocaleDateString();
+          },
+          enableKeyboardControls: true,
+
+        });
+		
+		var timeline = L.timeline(DEU_WGS84, {getInterval: interval, style: style});
+		timelineControl.addTo(map);
+		timelineControl.addTimelines(timeline);
+		
+		timeline.addTo(map);
+		
+		$(document).ready(function(){
+			$("button").click(function(){
+			
+		
+			});
+		});
+		
+		</script>
+		
+		
+		</div>
+
+	
+	</body>
+	
+
+</html>

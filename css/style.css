@@ -33,7 +33,25 @@ label {
 }
 
 #map {
-	width: 70%;
+	max-width: 98%;
+	width: 68%;
 	height: 100%;
+	
+}
 
+#toggle{
+position: fixed;
+right: 0;
+bottom: 0;
+
+}
+
+#legend {
+height: 100%;
+width: 30%;
+position: fixed;
+right: 0;
+bottom: 0;
+border: 3px solid #73AD21;
+background: white;
 }
